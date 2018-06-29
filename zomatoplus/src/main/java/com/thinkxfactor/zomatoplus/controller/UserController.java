@@ -29,10 +29,15 @@ public class UserController {
 	}
 
 	@GetMapping("/getAll")
-	public List<User> usergetAll() 
-	{
-		List<User> users=userRepository.findAll();
-		return users;
+	public Set<User> userLogin(){
+		User user1= new User(10L,"Jane Doe", "super","califra","gilist","icex","pialid","ocious");
+		//User user2= new User("John Doe", "winter is coming");
+		//User user3= new User("Jane John", "abracadabra");
+		Set<User> userSet=new HashSet<>();
+		userSet.add(user1);
+		//userSet.add(user2);
+		//userSet.add(user3);
+		return userSet;
 		/*
 		User user2=new User("Zimbo","burkha");
 		User user3=new User("Alpha","hubba");
@@ -57,10 +62,20 @@ public class UserController {
 
 	}
 */	
+/*	
 	@PostMapping("/create")
 	public User create(@RequestBody User user)
 	{
 		System.out.println(user.toString());
 		return user;
+	}
+*/
+	
+	@PostMapping("/login")
+	public User login(@RequestBody User user)
+	{
+		User persisted=userRepository.findByNameAndPassword(user.getName(),user.getPassword());
+		return persisted;
+		
 	}
 }

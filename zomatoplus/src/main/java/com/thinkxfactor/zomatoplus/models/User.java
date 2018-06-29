@@ -17,7 +17,7 @@ public class User implements Serializable
 	@GeneratedValue
 	private long id;
 	
-	@Column(name="name")
+	@Column(name="name",unique=true)
 	private String name;
 	
 	@Column(name="type")
